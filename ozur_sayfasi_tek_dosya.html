@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Özür Dilerim</title>
+  <style>
+    body {
+      margin: 0;
+      background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      color: #fff;
+    }
+    #main, #error, #thanks {
+      display: none;
+    }
+    h1 {
+      font-size: 36px;
+      text-shadow: 1px 1px 3px #000;
+    }
+    p {
+      font-size: 22px;
+      margin-bottom: 40px;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    button {
+      padding: 15px 35px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    #yes {
+      background-color: #a0e6a0;
+      color: #155724;
+    }
+    #no {
+      background-color: #f08080;
+      color: #721c24;
+    }
+    .flower {
+      position: fixed;
+      width: 30px;
+      animation: fall 3s linear infinite;
+      z-index: 9999;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+    .screen {
+      display: none;
+    }
+  </style>
+</head>
+<body onload="startPage()">
+
+  <div id="main" class="screen">
+    <h1>Akşam dediklerim için özür dilerim 💐</h1>
+    <p>Lütfen özrümü kabul et ve aşağıda belirt.</p>
+    <div class="buttons">
+      <button id="yes">Evet</button>
+      <button id="no">Hayır</button>
+    </div>
+  </div>
+
+  <div id="error" class="screen">
+    <h1>Yanlış seçeneğe tıkladın</h1>
+    <p>Tekrar karar ver lütfen 🙏 🥺</p>
+  </div>
+
+  <div id="thanks" class="screen">
+    <h1>Özrümü kabul ettiğin için çok teşekkür ederimmmm 💐💐</h1>
+  </div>
+
+  <script>
+    const main = document.getElementById("main");
+    const error = document.getElementById("error");
+    const thanks = document.getElementById("thanks");
+
+    function startPage() {
+      main.style.display = "block";
+    }
+
+    document.getElementById("yes").onclick = () => {
+      main.style.display = "none";
+      thanks.style.display = "block";
+      for (let i = 0; i < 20; i++) {
+        const flower = document.createElement("img");
+        flower.src = "https://i.imgur.com/OZxKZ9R.png";
+        flower.classList.add("flower");
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.top = "-50px";
+        flower.style.animationDuration = (Math.random() * 2 + 2) + "s";
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 4000);
+      }
+    };
+
+    document.getElementById("no").onclick = () => {
+      main.style.display = "none";
+      error.style.display = "block";
+      setTimeout(() => {
+        error.style.display = "none";
+        main.style.display = "block";
+      }, 3000);
+    };
+  </script>
+
+</body>
+</html>
